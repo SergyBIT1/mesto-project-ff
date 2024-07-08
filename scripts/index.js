@@ -11,10 +11,7 @@ function createCard(element, deleteCard) {
   cardElement.querySelector('.card__image').src = element.link;
   cardElement.querySelector('.card__image').alt = element.name;
   cardElement.querySelector('.card__title').textContent = element.name;
-
-  // cardDelete.addEventListener('click', () => {createCard(element, deleteCard)});
-  // cardDelete.addEventListener('click', deleteCard(element));
-    cardDelete.addEventListener('click', deleteCard);
+  cardDelete.addEventListener('click', deleteCard);
 
   return cardElement;
 };
