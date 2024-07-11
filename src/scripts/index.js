@@ -1,15 +1,5 @@
 import '../pages/index.css';
-
 import initialCards from './cards.js'
-
-// import  from './src/images/card_1.jpg';
-
-// import logo from '../images/logo.svg';
-// const logo = new URL('../images/logo.svg', import.meta.url);
-
-// const whoIsTheGoat = [
-//   { name: 'logo', link: logo },
-// ];
 
 const cardTemplate = document.querySelector('#card-template').content;
 
