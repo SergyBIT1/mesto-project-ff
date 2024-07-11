@@ -1,6 +1,6 @@
 import '../pages/index.css';
 
-import initialCards from '../scripts/cards'
+import initialCards from './cards.js'
 
 // import  from './src/images/card_1.jpg';
 
