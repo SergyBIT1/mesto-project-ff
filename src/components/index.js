@@ -1,5 +1,6 @@
 import '../pages/index.css';
-import initialCards from './cards.js'
+import initialCards from './cards.js';
+import {openPopup} from './modal.js';
 
 const cardTemplate = document.querySelector('#card-template').content;
 

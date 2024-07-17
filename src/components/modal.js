@@ -1,3 +1,5 @@
+export {openPopup};
+
 
 // получаю элемент
 const profileEdit = document.querySelector('.popup_type_edit');
@@ -7,8 +9,8 @@ const profileEditButton = document.querySelector('.profile__edit-button');
 
 const openPopup = (popup) => {
   popup.classList.add('popup_is-opened')
-  document.addEventListener('keydown', handleCloseEsc)
-  document.addEventListener('click', modalWindowClose)
+  // document.addEventListener('keydown', handleCloseEsc)
+  // document.addEventListener('click', modalWindowClose)
 }
 
 // обработка открытия модального окна
