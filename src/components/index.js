@@ -29,6 +29,18 @@ initialCards.forEach(element => {
 
 
 
+// получаю элемент
+const profileEdit = document.querySelector('.popup_type_edit');
+
+const popupAddButton = document.querySelector(".profile__edit-button");
+
+// обработка открытия модального окна
+popupAddButton.addEventListener ('click', () => {
+  openPopup(profileEdit)
+})
+
+
+
 
 
  
