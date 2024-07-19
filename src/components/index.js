@@ -34,12 +34,6 @@ function openCardImage(event) {
   openPopup(popupTypeImage)
 }
 
-// function openCards(evt) {
-//   popupImgConteiner.src = evt.target.src;
-//   popupImgConteiner.alt = evt.target.alt;
-//   popupCaption.textContent = evt.target.alt;
-//   openPopup(imgPopup);
-
 function deleteCard(evt) {
   const evtTarget = evt.target.closest('.card');
   evtTarget.remove();
