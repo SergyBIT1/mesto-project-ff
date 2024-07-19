@@ -40,7 +40,7 @@ function deleteCard(evt) {
 }
 
 initialCards.forEach(element => {
-  placesList.append(createCard(element, deleteCard) )
+  placesList.append(createCard(element, deleteCard, openCardImage) )
 });
 
 // обработка открытия модального окна редактирования профиля
