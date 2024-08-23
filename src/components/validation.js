@@ -23,21 +23,19 @@ enableValidation({
 
 
 
-
-
 const formElement = document.querySelector('.form');
-const formInput = formElement.querySelector('.form__input');
+const formInput = formElement.querySelector('.popup__input');
 const formError = formElement.querySelector(`.${formInput.id}-error`);
 
 const showInputError = (formElement, errorMessage) => {
-  formElement.classList.add('form__input_type_error');
+  formElement.classList.add('name__input_type_error');
   formError.textContent = errorMessage;
-  formError.classList.add('form__input-error_active');
+  formError.classList.add('name__input-error_active');
 };
 
 const hideInputError = (formElement) => {
-  formElement.classList.remove('form__input_type_error');
-  formError.classList.remove('form__input-error_active');
+  formElement.classList.remove('name__input_type_error');
+  formError.classList.remove('name__input-error_active');
   formError.textContent = '';
 };
 
