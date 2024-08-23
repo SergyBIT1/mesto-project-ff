@@ -1,5 +1,12 @@
 const cardTemplate = document.querySelector('#card-template').content;
 
+// const objectsCreateCard = {
+//   element,
+//   deleteCard,
+//   openCardImage,
+//   clickLike
+// }
+
 function createCard(element, deleteCard, openCardImage, clickLike) {
   
   const cardElement = cardTemplate.querySelector('.card').cloneNode(true);

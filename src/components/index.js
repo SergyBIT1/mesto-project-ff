@@ -77,11 +77,21 @@ const formEditProfile = document.forms['edit-profile']
 const fieldTitle = document.querySelector('.profile__title')
 const fieldDescription = document.querySelector('.profile__description')
 
-function editCard (evt) {
+function editProfileHeader (evt) {
   evt.preventDefault();
   fieldTitle.textContent = titleInput.value
   fieldDescription.textContent = descriptionInput.value
   evt.target.reset()  
   closePopup(profileEdit)
 }
-formEditProfile.addEventListener('submit', editCard);
+formEditProfile.addEventListener('submit', editProfileHeader);
+
+
+
+
+
+// enableValidation()
+
+
+
+// clearValidation()
