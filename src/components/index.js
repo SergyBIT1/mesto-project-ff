@@ -2,6 +2,7 @@ import '../pages/index.css';
 import initialCards from './cards.js';
 import {createCard, deleteCard, clickLike} from './card.js';
 import {openPopup, closePopup} from './modal.js';
+import {enableValidation} from './validation.js';
 
 const placesList = document.querySelector('.places__list');
 const popupImage = document.querySelector('.popup__image')

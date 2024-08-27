@@ -58,3 +58,5 @@ const enableValidation = () => {
 };
 
 enableValidation();
+
+export {enableValidation};
