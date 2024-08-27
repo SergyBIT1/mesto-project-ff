@@ -86,11 +86,7 @@ function editProfileHeader (evt) {
 }
 formEditProfile.addEventListener('submit', editProfileHeader);
 
-
-
-
-
-// enableValidation()
+enableValidation();
 
 
 
