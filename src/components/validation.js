@@ -36,8 +36,8 @@ const isValid = (formElement, inputElement, validationConfig) => {
 };
 
 const setEventListeners = (formElement, validationConfig) => {
-  const inputList = Array.from(formElement.querySelectorAll('.popup__input'));
-  const buttonElement = formElement.querySelector('.popup__button');
+  const inputList = Array.from(formElement.querySelectorAll(validationConfig.inputSelector));
+  const buttonElement = formElement.querySelector(validationConfig.submitButtonSelector);
   inputList.forEach((inputElement) => {
     inputElement.addEventListener('input', function () {
       isValid(formElement, inputElement, validationConfig);
@@ -46,15 +46,13 @@ const setEventListeners = (formElement, validationConfig) => {
   });
 };
 
-setEventListeners(formElement, validationConfig);
-
 const enableValidation = (validationConfig) => {
 
   const formList = Array.from(document.querySelectorAll(validationConfig.formSelector));
   
   formList.forEach((formElement) => {
     formElement.addEventListener('submit', function (event) {
-      event.preventDefault();
+      event.preventDefault()
     });
     setEventListeners(formElement, validationConfig);
   });
@@ -83,7 +81,7 @@ const clearValidation = (formElement, validationConfig) => {
     hideInputError(formElement, inputElement)
   })
   buttonElement.disabled = true;
-  buttonElement.classList.add('form__submit_inactive');
+  buttonElement.classList.add('form__submit_inactive')
 }
 
 export {enableValidation, clearValidation};
