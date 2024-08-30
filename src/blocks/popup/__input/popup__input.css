@@ -3,7 +3,6 @@
   height: 47px;
   border: 0;
   border-bottom: 1px solid rgba(0, 0, 0, .2);
-  /* border-bottom: 1px solid red;  */
   font-size: 14px;
   line-height: 18px;
   box-sizing: border-box;
@@ -15,6 +14,15 @@
   margin-bottom: 0;
 }
 
+.popup_input_type_error {
+  border-bottom: 1px solid #FF0000;
+}
+
+.popup__error_visible {
+  display: block;
+  color: #FF0000;
+}
+
 @media screen and (max-width: 568px) {
   .popup__title {
     font-size: 12px;
@@ -22,10 +30,3 @@
   }
 }
 
-/* .popup__input_type_error {
-  border-bottom-color: red;} */
-
-
-  /* .popup__error_visible {
-    border-bottom: 1px solid red; 
-  } */
