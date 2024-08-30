@@ -6,7 +6,24 @@ const config = {
   }
 }
 
-export const getInitialCards = () => {
-    return fetch('', {})
-    // ...
+const getInitialCards = () => {
+  return fetch(`${config.baseUrl}/cards`, {
+  headers: config.headers
+})
+  .then(res => res.json())
+  .then((result) => {
+    console.log(result);
+  });
 }
+
+const getUsers = () => {
+  return fetch(`${config.baseUrl}/users/me`, {
+  headers: config.headers
+})
+  .then(res => res.json())
+  .then((result) => {
+    console.log(result);
+  });
+}
+
+export { getInitialCards, getUsers };

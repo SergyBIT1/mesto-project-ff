@@ -3,11 +3,14 @@ import initialCards from './cards.js';
 import {createCard, deleteCard, clickLike} from './card.js';
 import {openPopup, closePopup} from './modal.js';
 import {enableValidation, clearValidation} from './validation.js';
+import {getInitialCards, getUsers} from './api.js';
 
 const placesList = document.querySelector('.places__list');
 const popupImage = document.querySelector('.popup__image');
 const popupTypeImage = document.querySelector('.popup_type_image');
 const popupTypeImageCuption = document.querySelector('.popup__caption');
+
+const profileTitle = document.querySelector('.profile__title')
 
 const validationConfig = {
   formSelector: '.popup__form',
@@ -18,6 +21,21 @@ const validationConfig = {
   errorClass: 'popup__error_visible'
 };
 
+// новый вывод карточек
+
+function getUserAndCardsInfo () {
+  return Promise.all([getUsers(), getInitialCards()])
+  .then(([userData, cardsData] ) => {
+  console.log({userData, cardsData})
+
+  cardsData.forEach(element => {
+    placesList.append(createCard(element, userId, cardDelete, openCardImage, clickLike))
+  }) 
+  })
+}
+
+getUserAndCardsInfo ()
+
 function openCardImage(event) {
   popupImage.src = event.target.src
   popupImage.alt = event.target.alt
@@ -25,9 +43,11 @@ function openCardImage(event) {
   openPopup(popupTypeImage)
 };
 
-initialCards.forEach(element => {
-  placesList.append(createCard(element, deleteCard, openCardImage, clickLike) )
-});
+// старый вывод карточек
+
+// initialCards.forEach(element => {
+//   placesList.append(createCard(element, deleteCard, openCardImage, clickLike) )
+// });
 
 // обработка открытия модального окна редактирования профиля
 const profileEdit = document.querySelector('.popup_type_edit');
