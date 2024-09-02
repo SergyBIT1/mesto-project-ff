@@ -118,7 +118,7 @@ function editProfileHeader (evt) {
 
   .then((dataset) => {
   fieldTitle.textContent = dataset.name
-  fieldDescription.textContent = dataset.description
+  fieldDescription.textContent = dataset.about
   evt.target.reset()  
   closePopup(profileEdit)
   })
