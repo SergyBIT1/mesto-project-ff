@@ -6,12 +6,15 @@ const config = {
   }
 }
 
+
+
 const getInitialCards = () => {
   return fetch(`${config.baseUrl}/cards`, {
   headers: config.headers
 })
   .then(res => res.json())
   .then((result) => {
+    return result
     console.log(result);
   });
 }
@@ -22,6 +25,7 @@ const getUsers = () => {
 })
   .then(res => res.json())
   .then((result) => {
+    return result
     console.log(result);
   });
 }

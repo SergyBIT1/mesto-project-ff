@@ -23,13 +23,18 @@ const validationConfig = {
 
 // новый вывод карточек
 
+let userId;
+
+
 function getUserAndCardsInfo () {
   return Promise.all([getUsers(), getInitialCards()])
   .then(([userData, cardsData] ) => {
   console.log({userData, cardsData})
 
+  profileTitle.textContent =  userData.name;
+
   cardsData.forEach(element => {
-    placesList.append(createCard(element, userId, cardDelete, openCardImage, clickLike))
+    placesList.append(createCard(element, userId, deleteCard, openCardImage, clickLike))
   }) 
   })
 }
@@ -91,7 +96,7 @@ function crateNewCard (evt) {
     link: cardUrlInput.value,
   };
 
-  const newPopupCard = createCard(element, deleteCard,  openCardImage, clickLike);
+  const newPopupCard = createCard(element, userId, deleteCard,  openCardImage, clickLike);
   cardPlaceList.prepend(newPopupCard)
   closePopup(popupTypeNewCard)
   evt.target.reset()
