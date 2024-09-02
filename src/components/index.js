@@ -3,7 +3,7 @@ import '../pages/index.css';
 import {createCard, deleteCard, clickLike} from './card.js';
 import {openPopup, closePopup} from './modal.js';
 import {enableValidation, clearValidation} from './validation.js';
-import {getInitialCards, getUsers, editProfile} from './api.js';
+import {getInitialCards, getUsers, editProfile, addNewCardByApi} from './api.js';
 
 const placesList = document.querySelector('.places__list');
 const popupImage = document.querySelector('.popup__image');
@@ -32,8 +32,8 @@ function getUserAndCardsInfo () {
 
   profileTitle.textContent =  userData.name;
 
-  cardsData.forEach(element => {
-    placesList.append(createCard(element, userId, deleteCard, openCardImage, clickLike))
+  cardsData.forEach(dataset => {
+    placesList.append(createCard(dataset, userId, deleteCard, openCardImage, clickLike))
   }) 
   })
 }
@@ -90,16 +90,21 @@ const cardUrlInput = document.querySelector('.popup__input_type_url');
 function crateNewCard (evt) {
   evt.preventDefault(); 
 
-  const element = {
+  const dataset = {
     name: cardNameInput.value,
     link: cardUrlInput.value,
   };
 
-  const newPopupCard = createCard(element, userId, deleteCard,  openCardImage, clickLike);
+  addNewCardByApi(dataset)
+  .then((dataset) => {
+   
+  const newPopupCard = createCard(dataset, userId, deleteCard,  openCardImage, clickLike);
   cardPlaceList.prepend(newPopupCard)
   closePopup(popupTypeNewCard)
   evt.target.reset()
+  })
 };
+
 formNewCard.addEventListener('submit', crateNewCard)
 
 // редактирование профиля
@@ -116,9 +121,9 @@ function editProfileHeader (evt) {
 
   editProfile(titleInput.value, descriptionInput.value)
 
-  .then((editUserData) => {
-  fieldTitle.textContent = editUserData.name
-  fieldDescription.textContent = editUserData.about
+  .then((editUserDataset) => {
+  fieldTitle.textContent = editUserDataset.name
+  fieldDescription.textContent = editUserDataset.about
   evt.target.reset()  
   closePopup(profileEdit)
   })

@@ -2,14 +2,14 @@
 
 const cardTemplate = document.querySelector('#card-template').content;
 
-function createCard(element, userId, deleteCard, openCardImage, clickLike) {
+function createCard(dataset, userId, deleteCard, openCardImage, clickLike) {
   
   const cardElement = cardTemplate.querySelector('.card').cloneNode(true);
   const cardDelete = cardElement.querySelector('.card__delete-button');
   const likeButton = cardElement.querySelector('.card__like-button');
-  cardElement.querySelector('.card__image').src = element.link;
-  cardElement.querySelector('.card__image').alt = element.name;
-  cardElement.querySelector('.card__title').textContent = element.name;
+  cardElement.querySelector('.card__image').src = dataset.link;
+  cardElement.querySelector('.card__image').alt = dataset.name;
+  cardElement.querySelector('.card__title').textContent = dataset.name;
   cardDelete.addEventListener('click', deleteCard);
   likeButton.addEventListener('click', clickLike);
 

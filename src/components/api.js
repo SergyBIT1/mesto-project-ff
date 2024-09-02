@@ -38,6 +38,21 @@ const editProfile = (name, about) => {
 })
   })
   .then(processResponse)
+    
+  //   (res => res.json())
+  // .then((result) => {
+  //   return result
+  // });
 }
 
-export { getInitialCards, getUsers, editProfile };
+const addNewCardByApi = (dataAddNewCard) => {
+  return fetch(`${config.baseUrl}/cards`, {
+    method: 'POST',
+    headers: config.headers,
+    body: JSON.stringify( dataAddNewCard
+    )
+})
+.then(processResponse)
+}
+
+export { getInitialCards, getUsers, editProfile, addNewCardByApi };
