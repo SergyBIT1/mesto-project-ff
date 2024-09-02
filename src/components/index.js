@@ -1,9 +1,9 @@
 import '../pages/index.css';
-import initialCards from './cards.js';
+// import initialCards from './cards.js';
 import {createCard, deleteCard, clickLike} from './card.js';
 import {openPopup, closePopup} from './modal.js';
 import {enableValidation, clearValidation} from './validation.js';
-import {getInitialCards, getUsers} from './api.js';
+import {getInitialCards, getUsers, editProfile} from './api.js';
 
 const placesList = document.querySelector('.places__list');
 const popupImage = document.querySelector('.popup__image');
@@ -24,7 +24,6 @@ const validationConfig = {
 // новый вывод карточек
 
 let userId;
-
 
 function getUserAndCardsInfo () {
   return Promise.all([getUsers(), getInitialCards()])
@@ -114,10 +113,15 @@ const fieldDescription = document.querySelector('.profile__description');
 
 function editProfileHeader (evt) {
   evt.preventDefault();
-  fieldTitle.textContent = titleInput.value
-  fieldDescription.textContent = descriptionInput.value
+
+  editProfile(titleInput.value, descriptionInput.value)
+
+  .then((dataset) => {
+  fieldTitle.textContent = dataset.name
+  fieldDescription.textContent = dataset.description
   evt.target.reset()  
   closePopup(profileEdit)
+  })
 };
 formEditProfile.addEventListener('submit', editProfileHeader);
 

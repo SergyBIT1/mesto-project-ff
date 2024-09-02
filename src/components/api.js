@@ -6,7 +6,12 @@ const config = {
   }
 }
 
-
+const processResponse = (res) => {
+  if(res.ok) {
+    return res.json()
+  }
+  return error()
+}
 
 const getInitialCards = () => {
   return fetch(`${config.baseUrl}/cards`, {
@@ -15,7 +20,7 @@ const getInitialCards = () => {
   .then(res => res.json())
   .then((result) => {
     return result
-    console.log(result);
+    
   });
 }
 
@@ -26,8 +31,24 @@ const getUsers = () => {
   .then(res => res.json())
   .then((result) => {
     return result
-    console.log(result);
+    // console.log(result);
   });
 }
 
-export { getInitialCards, getUsers };
+const editProfile = (name, about) => {
+  return fetch(`${config.baseUrl}/users/me`, {
+  
+  method: 'PATCH',
+  headers:  config.headers,
+  body: JSON.stringify({
+    name: name,
+    about: about
+})
+  })
+  .then(res => res.json())
+  .then((result) => {
+    return result
+  });
+}
+
+export { getInitialCards, getUsers, editProfile };

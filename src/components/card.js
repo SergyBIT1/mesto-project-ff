@@ -1,13 +1,8 @@
+// import { userId } from './index.js';
+
 const cardTemplate = document.querySelector('#card-template').content;
 
-// const objectsCreateCard = {
-//   element,
-//   deleteCard,
-//   openCardImage,
-//   clickLike
-// }
-
-function createCard(element, deleteCard, openCardImage, clickLike) {
+function createCard(element, userId, deleteCard, openCardImage, clickLike) {
   
   const cardElement = cardTemplate.querySelector('.card').cloneNode(true);
   const cardDelete = cardElement.querySelector('.card__delete-button');
