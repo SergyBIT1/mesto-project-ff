@@ -116,9 +116,9 @@ function editProfileHeader (evt) {
 
   editProfile(titleInput.value, descriptionInput.value)
 
-  .then((dataset) => {
-  fieldTitle.textContent = dataset.name
-  fieldDescription.textContent = dataset.about
+  .then((editUserData) => {
+  fieldTitle.textContent = editUserData.name
+  fieldDescription.textContent = editUserData.about
   evt.target.reset()  
   closePopup(profileEdit)
   })

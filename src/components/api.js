@@ -17,22 +17,14 @@ const getInitialCards = () => {
   return fetch(`${config.baseUrl}/cards`, {
   headers: config.headers
 })
-  .then(res => res.json())
-  .then((result) => {
-    return result
-    
-  });
+  .then(processResponse)
 }
 
 const getUsers = () => {
   return fetch(`${config.baseUrl}/users/me`, {
   headers: config.headers
 })
-  .then(res => res.json())
-  .then((result) => {
-    return result
-    // console.log(result);
-  });
+  .then(processResponse)
 }
 
 const editProfile = (name, about) => {
@@ -42,13 +34,10 @@ const editProfile = (name, about) => {
   headers:  config.headers,
   body: JSON.stringify({
     name: name,
-    about: about
+    about: about,
 })
   })
-  .then(res => res.json())
-  .then((result) => {
-    return result
-  });
+  .then(processResponse)
 }
 
 export { getInitialCards, getUsers, editProfile };
