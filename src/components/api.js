@@ -49,10 +49,27 @@ const addNewCardByApi = (dataAddNewCard) => {
   return fetch(`${config.baseUrl}/cards`, {
     method: 'POST',
     headers: config.headers,
-    body: JSON.stringify( dataAddNewCard
+    body: JSON.stringify( 
+      dataAddNewCard
     )
 })
 .then(processResponse)
 }
 
-export { getInitialCards, getUsers, editProfile, addNewCardByApi };
+const addLikeAndCount = (cardId) => {
+  return fetch(`${config.baseUrl}/cards/likes/${cardId}`, {
+    method: 'PUT',
+    headers: config.headers,
+})
+.then(processResponse)
+}
+
+const deleteLike = (cardId) => {
+  return fetch(`${config.baseUrl}/cards/likes/${cardId}`, {
+    method: 'DELETE',
+    headers: config.headers,
+})
+.then(processResponse)
+}
+
+export { getInitialCards, getUsers, editProfile, addNewCardByApi, addLikeAndCount, deleteLike };

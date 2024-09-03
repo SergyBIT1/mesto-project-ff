@@ -11,6 +11,7 @@ const popupTypeImage = document.querySelector('.popup_type_image');
 const popupTypeImageCuption = document.querySelector('.popup__caption');
 
 const profileTitle = document.querySelector('.profile__title')
+const profileDescription = document.querySelector('.profile__description')
 
 const validationConfig = {
   formSelector: '.popup__form',
@@ -21,8 +22,6 @@ const validationConfig = {
   errorClass: 'popup__error_visible'
 };
 
-// новый вывод карточек
-
 let userId;
 
 function getUserAndCardsInfo () {
@@ -31,6 +30,7 @@ function getUserAndCardsInfo () {
   console.log({userData, cardsData})
 
   profileTitle.textContent =  userData.name;
+  profileDescription.textContent =  userData.about;
 
   cardsData.forEach(dataset => {
     placesList.append(createCard(dataset, userId, deleteCard, openCardImage, clickLike))
@@ -46,12 +46,6 @@ function openCardImage(event) {
   popupTypeImageCuption.textContent = event.target.alt
   openPopup(popupTypeImage)
 };
-
-// старый вывод карточек
-
-// initialCards.forEach(element => {
-//   placesList.append(createCard(element, deleteCard, openCardImage, clickLike) )
-// });
 
 // обработка открытия модального окна редактирования профиля
 const profileEdit = document.querySelector('.popup_type_edit');
