@@ -26,21 +26,37 @@ function createCard(dataset, userId, deleteCard, openCardImage, clickLike) {
   return cardElement;
 };
 
-function deleteCard(evt) {
-  const evtTarget = evt.target.closest('.card');
-  evtTarget.remove();
+function deleteCard(dataset, cardId) {
+  // const evtTarget = evt.target.closest('.card');
+  // evtTarget.remove();
+  const removeCardPopup = document.querySelector('.popup_type_remove-card')
+  // openPopup(removeCardPopup);
+
+  const removeButton = removeCardPopup.querySelector('.popup__button');
+
+  removeButton.onclick = () => {
+    removeCard(cardId._id)
+
+    .then(() => {
+      dataset.remove()
+      closePopup(removeCardPopup)      
+    })
+ .catch((err) => {
+      console.log(err)
+    })
+
+  }
 }
 
-function clickLike(evt, cardId, likeCardPlace) {
-  const likeButton = evt.target;
-  const likeAction = likeButton.classList.contains('card__like-button_is-active') ? deleteLike : addLikeAndCount;
-  likeAction(cardId)
+function clickLike(evt, cardId) {
+  const likeAction = evt.target.classList.contains('card__like-button_is-active') 
+  const action = likeAction ? deleteLike(cardId._id) : addLikeAndCount(cardId._id);
+  action
   .then ((res) => {
-    likeButton.classList.add('card__like-button_is-active') 
-    likeCardPlace.textContent = res.likes.length 
-
-    // const countLikes =  evt.target.classList.add('card__like-button-count')
-    // countLikes.textContent = res.likes.length
+    evt.target.classList.toggle('card__like-button_is-active', !likeAction);
+    evt.target
+    .closest('.places__item') 
+    .querySelector('.card__like-button-count').textContent = res.likes.length 
   }) 
   .catch(err => console.log(err));
 }

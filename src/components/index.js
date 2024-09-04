@@ -3,7 +3,7 @@ import '../pages/index.css';
 import {createCard, deleteCard, clickLike} from './card.js';
 import {openPopup, closePopup} from './modal.js';
 import {enableValidation, clearValidation} from './validation.js';
-import {getInitialCards, getUsers, editProfile, addNewCardByApi} from './api.js';
+import {getInitialCards, getUsers, editProfile, addNewCardByApi, eraseCardByApi} from './api.js';
 
 const placesList = document.querySelector('.places__list');
 const popupImage = document.querySelector('.popup__image');
