@@ -38,11 +38,6 @@ const editProfile = (name, about) => {
 })
   })
   .then(processResponse)
-    
-  //   (res => res.json())
-  // .then((result) => {
-  //   return result
-  // });
 }
 
 const addNewCardByApi = (dataAddNewCard) => {
@@ -94,4 +89,13 @@ const addNewAvatar = (piclink) => {
 .then(processResponse)
 }
 
-export { getInitialCards, getUsers, editProfile, addNewCardByApi, eraseCardByApi, addLikeAndCount, deleteLike, addNewAvatar };
+export { 
+  getInitialCards, 
+  getUsers, 
+  editProfile, 
+  addNewCardByApi, 
+  eraseCardByApi, 
+  addLikeAndCount, 
+  deleteLike, 
+  addNewAvatar 
+};

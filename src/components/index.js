@@ -1,5 +1,4 @@
 import '../pages/index.css';
-// import initialCards from './cards.js';
 import {createCard, deleteCard, clickLike} from './card.js';
 import {openPopup, closePopup} from './modal.js';
 import {enableValidation, clearValidation} from './validation.js';
@@ -9,10 +8,29 @@ const placesList = document.querySelector('.places__list');
 const popupImage = document.querySelector('.popup__image');
 const popupTypeImage = document.querySelector('.popup_type_image');
 const popupTypeImageCuption = document.querySelector('.popup__caption');
-
 const profileTitle = document.querySelector('.profile__title');
 const profileDescription = document.querySelector('.profile__description');
 const profileImage = document.querySelector('.profile__image');
+const profileEdit = document.querySelector('.popup_type_edit');
+const popupAddButton = document.querySelector('.profile__edit-button');
+const cardPlaceList = document.querySelector('.places__list');
+const formNewCard = document.forms['new-place'];
+const cardNameInput = document.querySelector('.popup__input_type_card-name');
+const cardUrlInput = document.querySelector('.popup__input_type_url');
+const popupTypeNewCard = document.querySelector('.popup_type_new-card');
+const addProfileButton = document.querySelector('.profile__add-button');
+const popupCloseCross = document.querySelectorAll('.popup__close');
+const titleInput = document.querySelector('.popup__input_type_name');
+const descriptionInput = document.querySelector('.popup__input_type_description');
+const formEditProfile = document.forms['edit-profile'];
+const fieldTitle = document.querySelector('.profile__title');
+const fieldDescription = document.querySelector('.profile__description');
+
+const editAvatar = document.querySelector('.profile__image');
+const popupChangeAvatar = document.querySelector('.popup_type_change-avatar'); 
+const popupAvatarForm = popupChangeAvatar.querySelector('.popup__form');
+const inputAvatarUrl = popupAvatarForm.querySelector('.popup__input_type_url');
+const avatarSaveButton = popupAvatarForm.querySelector('.popup__button');
 
 const validationConfig = {
   formSelector: '.popup__form',
@@ -50,9 +68,6 @@ function openCardImage(event) {
 };
 
 // обработка открытия модального окна редактирования профиля
-const profileEdit = document.querySelector('.popup_type_edit');
-const popupAddButton = document.querySelector('.profile__edit-button');
-
 popupAddButton.addEventListener ('click', () => {  
   openPopup(profileEdit)
   titleInput.value = fieldTitle.textContent
@@ -60,16 +75,11 @@ popupAddButton.addEventListener ('click', () => {
 });
 
 // обработка открытия модального окна добавления картинки нового места
-const popupTypeNewCard = document.querySelector('.popup_type_new-card');
-const addProfileButton = document.querySelector('.profile__add-button');
-
 addProfileButton.addEventListener ('click', () => {
   openPopup(popupTypeNewCard)
 });
 
 // обработка закрытия модального окна по крестику
-const popupCloseCross = document.querySelectorAll('.popup__close');
-
 popupCloseCross.forEach(evt => {
   const popup = evt.closest('.popup')
   evt.addEventListener('click', () => {
@@ -77,12 +87,34 @@ popupCloseCross.forEach(evt => {
   })
 });
 
-//создание новой карточки
-const cardPlaceList = document.querySelector('.places__list');
-const formNewCard = document.forms['new-place'];
-const cardNameInput = document.querySelector('.popup__input_type_card-name');
-const cardUrlInput = document.querySelector('.popup__input_type_url');
+// обработка открытия модального окна смены аватара
 
+editAvatar.addEventListener('click', () => {
+  openPopup(popupChangeAvatar)
+  inputAvatarUrl.value = ''
+  // clearValidation(popupChangeAvatar, validationConfig)
+})
+
+popupAvatarForm.addEventListener('submit', () => {
+//   changeBtnText(avatarSaveButton, true)
+  addNewAvatar(inputAvatarUrl.value)
+  .then((res) => {
+    // console.log(res)
+    editAvatar.style.backgroundImage = `url(${res.avatar})`
+//     console.log(`url(${res.avatar})`)
+    closePopup(popupChangeAvatar)
+  })
+//   .catch((err) => {
+//     console.log(err)
+//   })
+
+//   .finally(() => {
+//     changeBtnText(avatarSaveButton, false)
+//   })
+})
+
+
+//создание новой карточки
 function crateNewCard (evt) {
   evt.preventDefault(); 
 
@@ -102,15 +134,6 @@ function crateNewCard (evt) {
 };
 
 formNewCard.addEventListener('submit', crateNewCard)
-
-// редактирование профиля
-const titleInput = document.querySelector('.popup__input_type_name');
-const descriptionInput = document.querySelector('.popup__input_type_description');
-const formEditProfile = document.forms['edit-profile'];
-
-// элементы, куда должны быть вставлены значения полей
-const fieldTitle = document.querySelector('.profile__title');
-const fieldDescription = document.querySelector('.profile__description');
 
 function editProfileHeader (evt) {
   evt.preventDefault();
