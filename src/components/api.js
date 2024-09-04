@@ -67,7 +67,6 @@ const eraseCardByApi = (cardId) => {
 .then(processResponse)
 }
 
-
 const addLikeAndCount = (cardId) => {
   return fetch(`${config.baseUrl}/cards/likes/${cardId}`, {
     method: 'PUT',
@@ -84,4 +83,15 @@ const deleteLike = (cardId) => {
 .then(processResponse)
 }
 
-export { getInitialCards, getUsers, editProfile, addNewCardByApi, eraseCardByApi, addLikeAndCount, deleteLike };
+const addNewAvatar = (piclink) => {
+  return fetch(`${config.baseUrl}users/me/avatar`, {
+    method: 'PATCH',
+    headers: config.headers,
+    body: JSON.stringify({
+      avatar: piclink
+  })
+})
+.then(processResponse)
+}
+
+export { getInitialCards, getUsers, editProfile, addNewCardByApi, eraseCardByApi, addLikeAndCount, deleteLike, addNewAvatar };

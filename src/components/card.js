@@ -12,8 +12,10 @@ function createCard(dataset, userId, deleteCard, openCardImage, clickLike) {
   cardElement.querySelector('.card__image').src = dataset.link;
   cardElement.querySelector('.card__image').alt = dataset.name;
   cardElement.querySelector('.card__title').textContent = dataset.name;
-  cardDelete.addEventListener('click', deleteCard);
-  likeButton.addEventListener('click', clickLike);
+  cardDelete.addEventListener('click', (dataset) => {
+    deleteCard(dataset, cardId)})
+  likeButton.addEventListener('click', (evt) => {
+    clickLike(evt, cardId)})
   
   const likeCardPlace = cardElement.querySelector('.card__like-button-count')
 
@@ -35,7 +37,7 @@ function deleteCard(dataset, cardId) {
   const removeButton = removeCardPopup.querySelector('.popup__button');
 
   removeButton.onclick = () => {
-    removeCard(cardId._id)
+    removeCard(cardId)
 
     .then(() => {
       dataset.remove()
@@ -44,13 +46,12 @@ function deleteCard(dataset, cardId) {
  .catch((err) => {
       console.log(err)
     })
-
   }
 }
 
 function clickLike(evt, cardId) {
   const likeAction = evt.target.classList.contains('card__like-button_is-active') 
-  const action = likeAction ? deleteLike(cardId._id) : addLikeAndCount(cardId._id);
+  const action = likeAction ? deleteLike(cardId) : addLikeAndCount(cardId);
   action
   .then ((res) => {
     evt.target.classList.toggle('card__like-button_is-active', !likeAction);
