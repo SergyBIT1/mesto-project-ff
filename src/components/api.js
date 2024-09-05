@@ -79,7 +79,7 @@ const deleteLike = (cardId) => {
 }
 
 const addNewAvatar = (piclink) => {
-  return fetch(`${config.baseUrl}users/me/avatar`, {
+  return fetch(`${config.baseUrl}/users/me/avatar`, {
     method: 'PATCH',
     headers: config.headers,
     body: JSON.stringify({

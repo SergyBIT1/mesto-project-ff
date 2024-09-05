@@ -29,10 +29,10 @@ function createCard(dataset, userId, deleteCard, openCardImage, clickLike) {
 };
 
 function deleteCard(dataset, cardId) {
-  // const evtTarget = evt.target.closest('.card');
-  // evtTarget.remove();
+  const evtTarget = dataset.target.closest('.card');
+  evtTarget.remove();
   const removeCardPopup = document.querySelector('.popup_type_remove-card')
-  // openPopup(removeCardPopup);
+  openPopup(removeCardPopup);
 
   const removeButton = removeCardPopup.querySelector('.popup__button');
 

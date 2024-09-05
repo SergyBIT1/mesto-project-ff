@@ -87,31 +87,29 @@ popupCloseCross.forEach(evt => {
   })
 });
 
-// обработка открытия модального окна смены аватара
-
 editAvatar.addEventListener('click', () => {
+
   openPopup(popupChangeAvatar)
-  inputAvatarUrl.value = ''
-  // clearValidation(popupChangeAvatar, validationConfig)
 })
 
 popupAvatarForm.addEventListener('submit', () => {
-//   changeBtnText(avatarSaveButton, true)
+
   addNewAvatar(inputAvatarUrl.value)
-  .then((res) => {
-    // console.log(res)
-    editAvatar.style.backgroundImage = `url(${res.avatar})`
-//     console.log(`url(${res.avatar})`)
+
+  .then((userData) => {
+    editAvatar.style.backgroundImage = `url(${userData.avatar})`
+    evt.target.reset() 
     closePopup(popupChangeAvatar)
   })
-//   .catch((err) => {
-//     console.log(err)
-//   })
+  .catch((err) => {
+    console.log(err)
+  })
+})
 
 //   .finally(() => {
 //     changeBtnText(avatarSaveButton, false)
 //   })
-})
+// })
 
 
 //создание новой карточки
@@ -133,7 +131,7 @@ function crateNewCard (evt) {
   })
 };
 
-formNewCard.addEventListener('submit', crateNewCard)
+formNewCard.addEventListener('submit', crateNewCard);
 
 function editProfileHeader (evt) {
   evt.preventDefault();
