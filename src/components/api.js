@@ -41,7 +41,7 @@ const editProfile = (name, about) => {
 }
 
 const addNewCardByApi = (dataAddNewCard) => {
-  return fetch(`${config.baseUrl}/cards/${cardId}`, {
+  return fetch(`${config.baseUrl}/cards`, {
     method: 'POST',
     headers: config.headers,
     body: JSON.stringify( 
@@ -55,9 +55,6 @@ const eraseCardByApi = (cardId) => {
   return fetch(`${config.baseUrl}/cards/${cardId}`, {
     method: 'DELETE',
     headers: config.headers, 
-    body: JSON.stringify( 
-      dataAddNewCard
-    )
 })
 .then(processResponse)
 }

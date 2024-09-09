@@ -92,12 +92,23 @@ editAvatar.addEventListener('click', () => {
   openPopup(popupChangeAvatar)
 })
 
+
+function formEdit() {
+  const profileTitle = document.querySelector(".profile__title").textContent; 
+  const profileDescription = document.querySelector(".profile__description").textContent; 
+  titleInput.value = profileTitle;
+  descriptionInput.value = profileDescription;
+}
+
+
+
 popupAvatarForm.addEventListener('submit', () => {
+  // changeBtnText(avatarSaveButton, true)
 
   addNewAvatar(inputAvatarUrl.value)
 
-  .then((userData) => {
-    editAvatar.style.backgroundImage = `url(${userData.avatar})`
+  .then((someUserData) => {
+    editAvatar.style.backgroundImage = `url(${someUserData.avatar})`
     evt.target.reset() 
     closePopup(popupChangeAvatar)
   })
@@ -111,6 +122,10 @@ popupAvatarForm.addEventListener('submit', () => {
 //   })
 // })
 
+// function changeBtnText (buttonElement, status) {
+  
+//   buttonElement.textContent = status ? 'Сохранение...' : 'Сохранить'
+// }
 
 //создание новой карточки
 function crateNewCard (evt) {
@@ -122,9 +137,9 @@ function crateNewCard (evt) {
   };
 
   addNewCardByApi(dataset)
-  .then((dataset) => {
+  .then((data) => {
    
-  const newPopupCard = createCard(dataset, userId, deleteCard,  openCardImage, clickLike);
+  const newPopupCard = createCard(data, userId, deleteCard,  openCardImage, clickLike);
   cardPlaceList.prepend(newPopupCard)
   closePopup(popupTypeNewCard)
   evt.target.reset()

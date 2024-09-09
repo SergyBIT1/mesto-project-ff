@@ -1,4 +1,5 @@
-import { addLikeAndCount, deleteLike } from "./api";
+import { addLikeAndCount, deleteLike, eraseCardByApi } from "./api";
+import { openPopup, closePopup } from "./modal";
 
 const cardTemplate = document.querySelector('#card-template').content;
 
@@ -29,15 +30,14 @@ function createCard(dataset, userId, deleteCard, openCardImage, clickLike) {
 };
 
 function deleteCard(dataset, cardId) {
-  const evtTarget = dataset.target.closest('.card');
-  evtTarget.remove();
-  const removeCardPopup = document.querySelector('.popup_type_remove-card')
+  
+  const removeCardPopup = document.querySelector('.popup_type_remove-card');
   openPopup(removeCardPopup);
 
   const removeButton = removeCardPopup.querySelector('.popup__button');
 
   removeButton.onclick = () => {
-    removeCard(cardId)
+    eraseCardByApi(cardId)
 
     .then(() => {
       dataset.remove()
