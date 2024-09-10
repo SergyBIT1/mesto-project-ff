@@ -54,7 +54,7 @@ function getUserAndCardsInfo () {
   profileImage.style.backgroundImage = `url(${userData.avatar})`;
 
   cardsData.forEach(dataset => {
-    placesList.append(createCard(dataset, userId, deleteCard, openCardImage, clickLike))
+    placesList.append(createCard(dataset, deleteCard, openCardImage, clickLike, author))
   }) 
   })
 }
@@ -140,7 +140,7 @@ function crateNewCard (evt) {
   addNewCardByApi(dataset)
   .then((data) => {
    
-  const newPopupCard = createCard(data, userId, deleteCard,  openCardImage, clickLike);
+  const newPopupCard = createCard(dataset, deleteCard,  openCardImage, clickLike, author);
   cardPlaceList.prepend(newPopupCard)
   closePopup(popupTypeNewCard)
   evt.target.reset()
