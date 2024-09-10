@@ -48,6 +48,7 @@ function getUserAndCardsInfo () {
   .then(([userData, cardsData] ) => {
   console.log({userData, cardsData})
 
+  const author = userData._id;
   profileTitle.textContent =  userData.name;
   profileDescription.textContent =  userData.about;
   profileImage.style.backgroundImage = `url(${userData.avatar})`;
