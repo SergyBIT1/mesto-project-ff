@@ -3,7 +3,7 @@ import { openPopup, closePopup } from "./modal";
 
 const cardTemplate = document.querySelector('#card-template').content;
 
-function createCard(dataset, deleteCard, openCardImage, clickLike, author) {
+function createCard(dataset, userId, deleteCard, openCardImage, clickLike) {
   
   const cardId = dataset._id;
 
@@ -26,7 +26,7 @@ function createCard(dataset, deleteCard, openCardImage, clickLike, author) {
   cardImage.addEventListener('click',  
     openCardImage)
 
-    if (dataset.owner._id !== author) {
+    if (dataset.owner._id !== userId) {
       cardDelete.remove();
     } else {
       cardDelete.addEventListener('click', () => {
@@ -34,7 +34,7 @@ function createCard(dataset, deleteCard, openCardImage, clickLike, author) {
       });
     }
 
-    if (dataset.owner._id !== author) {
+    if (dataset.owner._id !== userId) {
       likeCardPlace.remove();
     } else {
       likeCardPlace.addEventListener('click', () => {

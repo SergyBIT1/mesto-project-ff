@@ -48,13 +48,13 @@ function getUserAndCardsInfo () {
   .then(([userData, cardsData] ) => {
   console.log({userData, cardsData})
 
-  const author = userData._id;
+  const userId = userData._id;
   profileTitle.textContent =  userData.name;
   profileDescription.textContent =  userData.about;
   profileImage.style.backgroundImage = `url(${userData.avatar})`;
 
   cardsData.forEach(dataset => {
-    placesList.append(createCard(dataset, deleteCard, openCardImage, clickLike, author))
+    placesList.append(createCard(dataset, userId, deleteCard, openCardImage, clickLike))
   }) 
   })
 }
@@ -138,9 +138,9 @@ function crateNewCard (evt) {
   };
 
   addNewCardByApi(dataset)
-  .then((data) => {
+  .then((dataset) => {
    
-  const newPopupCard = createCard(dataset, deleteCard,  openCardImage, clickLike, author);
+  const newPopupCard = createCard(dataset, userId, deleteCard,  openCardImage, clickLike);
   cardPlaceList.prepend(newPopupCard)
   closePopup(popupTypeNewCard)
   evt.target.reset()
