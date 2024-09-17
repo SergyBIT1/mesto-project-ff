@@ -22,15 +22,20 @@ const addProfileButton = document.querySelector('.profile__add-button');
 const popupCloseCross = document.querySelectorAll('.popup__close');
 const titleInput = document.querySelector('.popup__input_type_name');
 const descriptionInput = document.querySelector('.popup__input_type_description');
-const formEditProfile = document.forms['edit-profile'];
-const fieldTitle = document.querySelector('.profile__title');
-const fieldDescription = document.querySelector('.profile__description');
 
-const editAvatar = document.querySelector('.profile__image');
+const formEditProfile = document.forms['edit-profile'];
+const editProfileSaveBtn = formEditProfile.querySelector('.popup__button')
+
+const formNewCardElement = document.forms['new-place']
+const newCardSaveBtn = formNewCardElement.querySelector('.popup__button')
+
 const popupChangeAvatar = document.querySelector('.popup_type_change-avatar'); 
+const fieldTitle = document.querySelector('.profile__title');
 const popupAvatarForm = popupChangeAvatar.querySelector('.popup__form');
 const inputAvatarUrl = popupAvatarForm.querySelector('.popup__input_type_url');
 const avatarSaveButton = popupAvatarForm.querySelector('.popup__button');
+const fieldDescription = document.querySelector('.profile__description');
+const editAvatar = document.querySelector('.profile__image');
 
 const validationConfig = {
   formSelector: '.popup__form',
@@ -130,7 +135,8 @@ function changeBtnText (buttonElement, status) {
 //создание новой карточки
 function crateNewCard (evt) {
   evt.preventDefault(); 
-
+  
+  changeBtnText(newCardSaveBtn, true)
   const dataset = {
     name: cardNameInput.value,
     link: cardUrlInput.value,
@@ -144,13 +150,20 @@ function crateNewCard (evt) {
   closePopup(popupTypeNewCard)
   evt.target.reset()
   })
+  .catch((err) => {
+    console.log(err)
+  })
+
+  .finally(() => {
+    changeBtnText(newCardSaveBtn, false)
+  })
 };
 
 formNewCard.addEventListener('submit', crateNewCard);
 
 function editProfileHeader (evt) {
   evt.preventDefault();
-
+changeBtnText(editProfileSaveBtn, true)
   editProfile(titleInput.value, descriptionInput.value)
 
   .then((editUserDataset) => {
@@ -159,6 +172,13 @@ function editProfileHeader (evt) {
   evt.target.reset()  
   closePopup(profileEdit)
   })
+
+  .finally(() => {
+    changeBtnText(editProfileSaveBtn, false)
+  })
+
+
+
 };
 formEditProfile.addEventListener('submit', editProfileHeader);
 
