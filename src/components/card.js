@@ -28,10 +28,10 @@ function createCard(dataset, userId, deleteCard, openCardImage, clickLike) {
 
     if (dataset.owner._id !== userId) {
       cardDelete.remove();
-    } else {
-      cardDelete.addEventListener('click', () => {
-        deleteCard(cardElement, cardId);
-      });
+    // } else {
+    //   cardDelete.addEventListener('click', () => {
+    //     deleteCard(cardElement, cardId);
+    //   });
     }
 
     if (dataset.owner._id !== userId) {
@@ -78,4 +78,10 @@ function clickLike(evt, cardId) {
   .catch(err => console.log(err));
 }
 
-export {createCard, deleteCard, clickLike}
+const hahdleDeleteCard = (dataset, cardElement) => {
+  deleteCard(dataset.owner._id).then(() => {
+    cardElement.remove();
+  })
+}
+
+export {createCard, deleteCard, clickLike, hahdleDeleteCard}

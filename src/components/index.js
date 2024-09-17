@@ -1,5 +1,5 @@
 import '../pages/index.css';
-import {createCard, deleteCard, clickLike} from './card.js';
+import {createCard, deleteCard, clickLike, hahdleDeleteCard} from './card.js';
 import {openPopup, closePopup} from './modal.js';
 import {enableValidation, clearValidation} from './validation.js';
 import {getInitialCards, getUsers, editProfile, addNewCardByApi, eraseCardByApi, addNewAvatar} from './api.js';
@@ -54,7 +54,7 @@ function getUserAndCardsInfo () {
   profileImage.style.backgroundImage = `url(${userData.avatar})`;
 
   cardsData.forEach(dataset => {
-    placesList.append(createCard(dataset, userId, deleteCard, openCardImage, clickLike))
+    placesList.append(createCard(dataset, userId, deleteCard, openCardImage, clickLike, hahdleDeleteCard))
   }) 
   })
 }
@@ -140,7 +140,7 @@ function crateNewCard (evt) {
   addNewCardByApi(dataset)
   .then((dataset) => {
    
-  const newPopupCard = createCard(dataset, userId, deleteCard,  openCardImage, clickLike);
+  const newPopupCard = createCard(dataset, userId, deleteCard,  openCardImage, clickLike, hahdleDeleteCard);
   cardPlaceList.prepend(newPopupCard)
   closePopup(popupTypeNewCard)
   evt.target.reset()
