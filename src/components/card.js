@@ -28,10 +28,10 @@ function createCard(dataset, userId, deleteCard, openCardImage, clickLike) {
 
     if (dataset.owner._id !== userId) {
       cardDelete.remove();
-    // } else {
-    //   cardDelete.addEventListener('click', () => {
-    //     deleteCard(cardElement, cardId);
-    //   });
+    } else {
+      cardDelete.addEventListener('click', () => {
+        deleteCard(cardElement, cardId);
+      });
     }
 
     if (dataset.owner._id !== userId) {

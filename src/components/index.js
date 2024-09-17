@@ -48,7 +48,7 @@ function getUserAndCardsInfo () {
   .then(([userData, cardsData] ) => {
   console.log({userData, cardsData})
 
-  const userId = userData._id;
+  userId = userData._id;
   profileTitle.textContent =  userData.name;
   profileDescription.textContent =  userData.about;
   profileImage.style.backgroundImage = `url(${userData.avatar})`;
@@ -104,29 +104,28 @@ function formEdit() {
 
 
 popupAvatarForm.addEventListener('submit', () => {
-  // changeBtnText(avatarSaveButton, true)
+  changeBtnText(avatarSaveButton, true)
 
   addNewAvatar(inputAvatarUrl.value)
 
   .then((someUserData) => {
     editAvatar.style.backgroundImage = `url(${someUserData.avatar})`
-    evt.target.reset() 
+    // evt.target.reset() 
     closePopup(popupChangeAvatar)
   })
   .catch((err) => {
     console.log(err)
   })
+
+  .finally(() => {
+    changeBtnText(avatarSaveButton, false)
+  })
 })
 
-//   .finally(() => {
-//     changeBtnText(avatarSaveButton, false)
-//   })
-// })
-
-// function changeBtnText (buttonElement, status) {
+function changeBtnText (buttonElement, status) {
   
-//   buttonElement.textContent = status ? 'Сохранение...' : 'Сохранить'
-// }
+  buttonElement.textContent = status ? 'Сохранение...' : 'Сохранить'
+}
 
 //создание новой карточки
 function crateNewCard (evt) {
