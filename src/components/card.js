@@ -1,5 +1,5 @@
 import { addLikeAndCount, deleteLike, eraseCardByApi } from "./api";
-import { openPopup, closePopup } from "./modal";
+// import { openPopup, closePopup } from "./modal";
 
 const cardTemplate = document.querySelector('#card-template').content;
 
@@ -45,24 +45,9 @@ function createCard(dataset, userId, deleteCard, openCardImage, clickLike) {
   return cardElement;
 };
 
-function deleteCard(dataset, cardId) {
-  
+function deleteCard() {
   const removeCardPopup = document.querySelector('.popup_type_remove-card');
-  openPopup(removeCardPopup);
-
-  const removeButton = removeCardPopup.querySelector('.popup__button');
-
-  removeButton.onclick = () => {
-    eraseCardByApi(cardId)
-
-    .then(() => {
-      dataset.remove()
-      closePopup(removeCardPopup)      
-    })
- .catch((err) => {
-      console.log(err)
-    })
-  }
+  removeCardPopup.querySelector('.popup__button');
 }
 
 function clickLike(evt, cardId) {
@@ -78,10 +63,10 @@ function clickLike(evt, cardId) {
   .catch(err => console.log(err));
 }
 
-const hahdleDeleteCard = (dataset, cardElement) => {
+const handleDeleteCard = (dataset, cardElement) => {
   deleteCard(dataset.owner._id).then(() => {
     cardElement.remove();
   })
 }
 
-export {createCard, deleteCard, clickLike, hahdleDeleteCard}
+export {createCard, deleteCard, clickLike, handleDeleteCard}

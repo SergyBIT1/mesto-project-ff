@@ -7,6 +7,7 @@ const openPopup = (popup) => {
 
 const closePopup = (popup) => {
   popup.classList.remove('popup_is-opened')
+  popup.classList.remove('popup_is-animated')
   document.removeEventListener('keydown', closeEsc)
   popup.removeEventListener('click', closeCross)
 }

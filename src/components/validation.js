@@ -1,11 +1,16 @@
-import { validationConfig } from './index.js';
-
-const formElement = document.querySelector('.popup__form');
-const formInput = formElement.querySelector('.popup__input');
+const validationConfig = {
+  formSelector: '.popup__form',
+  inputSelector: '.popup__input',
+  submitButtonSelector: '.popup__button',
+  // inactiveButtonClass: 'popup__button_disabled',
+  inactiveButtonClass: 'form__submit_inactive',
+  inputErrorClass: 'popup__input_type_error',
+  errorClass: 'popup__error_visible'
+};
 
 const showInputError = (formElement, inputElement, errorMessage, validationConfig) => {
   const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
-
+  inputElement.setCustomValidity('');
   inputElement.classList.add(validationConfig.inputErrorClass);
   errorElement.textContent = errorMessage;
   errorElement.classList.add(validationConfig.errorClass);
@@ -90,4 +95,4 @@ const clearValidation = (formElement, validationConfig) => {
   buttonElement.classList.add(validationConfig.inactiveButtonClass)
 }
 
-export {enableValidation, clearValidation};
+export {enableValidation, clearValidation, validationConfig};
