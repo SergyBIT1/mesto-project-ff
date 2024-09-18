@@ -138,6 +138,7 @@ function createNewCard (evt) {
 };
 
 formNewCard.addEventListener('submit', createNewCard);
+
 function editProfileHandler (evt) {
   evt.preventDefault();
 changeBtnText(editProfileSaveBtn, true)
