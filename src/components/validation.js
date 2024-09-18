@@ -73,12 +73,10 @@ const disableSubmitButton = (button, config) => {
 const toggleButtonState = (inputList, buttonElement, validationConfig) => {
   if (hasInvalidInput(inputList)) {
     buttonElement.disabled = true;
-    // buttonElement.classList.add(validationConfig.inactiveButtonClass);
-    buttonElement.classList.add('form__submit_inactive')
+    buttonElement.classList.add(validationConfig.inactiveButtonClass);
   } else {
     buttonElement.disabled = false;
-    // buttonElement.classList.remove(validationConfig.inactiveButtonClass)
-    buttonElement.classList.remove('form__submit_inactive')  
+    buttonElement.classList.remove(validationConfig.inactiveButtonClass) 
   }
 }
 

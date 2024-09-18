@@ -22,13 +22,10 @@ const addProfileButton = document.querySelector('.profile__add-button');
 const popupCloseCross = document.querySelectorAll('.popup__close');
 const titleInput = document.querySelector('.popup__input_type_name');
 const descriptionInput = document.querySelector('.popup__input_type_description');
-
 const formEditProfile = document.forms['edit-profile'];
 const editProfileSaveBtn = formEditProfile.querySelector('.popup__button')
-
 const formNewCardElement = document.forms['new-place']
 const newCardSaveBtn = formNewCardElement.querySelector('.popup__button')
-
 const popupChangeAvatar = document.querySelector('.popup_type_change-avatar'); 
 const fieldTitle = document.querySelector('.profile__title');
 const popupAvatarForm = popupChangeAvatar.querySelector('.popup__form');
@@ -41,7 +38,8 @@ const validationConfig = {
   formSelector: '.popup__form',
   inputSelector: '.popup__input',
   submitButtonSelector: '.popup__button',
-  inactiveButtonClass: 'popup__button_disabled',
+  // inactiveButtonClass: 'popup__button_disabled',
+  inactiveButtonClass: 'form__submit_inactive',
   inputErrorClass: 'popup__input_type_error',
   errorClass: 'popup__error_visible'
 };
@@ -94,10 +92,8 @@ popupCloseCross.forEach(evt => {
 });
 
 editAvatar.addEventListener('click', () => {
-
   openPopup(popupChangeAvatar)
 })
-
 
 function formEdit() {
   const profileTitle = document.querySelector(".profile__title").textContent; 
@@ -106,13 +102,9 @@ function formEdit() {
   descriptionInput.value = profileDescription;
 }
 
-
-
 popupAvatarForm.addEventListener('submit', () => {
   changeBtnText(avatarSaveButton, true)
-
   addNewAvatar(inputAvatarUrl.value)
-
   .then((someUserData) => {
     editAvatar.style.backgroundImage = `url(${someUserData.avatar})`
     // evt.target.reset() 
@@ -128,7 +120,6 @@ popupAvatarForm.addEventListener('submit', () => {
 })
 
 function changeBtnText (buttonElement, status) {
-  
   buttonElement.textContent = status ? 'Сохранение...' : 'Сохранить'
 }
 
@@ -160,12 +151,10 @@ function crateNewCard (evt) {
 };
 
 formNewCard.addEventListener('submit', crateNewCard);
-
 function editProfileHeader (evt) {
   evt.preventDefault();
 changeBtnText(editProfileSaveBtn, true)
   editProfile(titleInput.value, descriptionInput.value)
-
   .then((editUserDataset) => {
   fieldTitle.textContent = editUserDataset.name
   fieldDescription.textContent = editUserDataset.about
@@ -176,9 +165,6 @@ changeBtnText(editProfileSaveBtn, true)
   .finally(() => {
     changeBtnText(editProfileSaveBtn, false)
   })
-
-
-
 };
 formEditProfile.addEventListener('submit', editProfileHeader);
 
