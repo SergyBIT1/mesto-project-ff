@@ -47,7 +47,7 @@ function getInitialData () {
   profileImage.style.backgroundImage = `url(${userData.avatar})`;
 
   cardsData.forEach(dataset => {
-    placesList.append(createCard(dataset, userId, deleteCard, openCardImage, clickLike, handleDeleteCard, openDeleteCardForm))
+    placesList.append(createCard(dataset, userId, deleteCard, openCardImage, clickLike ))
   }) 
   })
 }
@@ -123,7 +123,7 @@ function createNewCard (evt) {
   addNewCardByApi(dataset)
   .then((dataset) => {
    
-  const newPopupCard = createCard(dataset, userId, deleteCard,  openCardImage, clickLike, handleDeleteCard, openDeleteCardForm);
+  const newPopupCard = createCard(dataset, userId, deleteCard,  openCardImage, clickLike );
   cardPlaceList.prepend(newPopupCard)
   closePopup(popupTypeNewCard)
   evt.target.reset()
@@ -157,18 +157,17 @@ changeBtnText(editProfileSaveBtn, true)
     changeBtnText(editProfileSaveBtn, false)
   })
 };
-formEditProfile.addEventListener('submit', editProfileHandler);
 
 function openDeleteCardForm(dataset, cardId) {
-  
-  const removeCardPopup = document.querySelector('.popup_type_remove-card');
+  const removeCardPopup = document.querySelector('.popup_type_remove-card'); 
+  openPopup(removeCardPopup); 
+  const removeButton = removeCardPopup.querySelector('.popup__button'); 
    openPopup(removeCardPopup);
 
-  removeButton.onclick = () => {
+   removeButton.onclick = () => {
     eraseCardByApi(cardId)
 
     .then(() => {
-      dataset.remove()
        closePopup(removeCardPopup)      
     })
  .catch((err) => {
@@ -178,3 +177,5 @@ function openDeleteCardForm(dataset, cardId) {
 }
 
 enableValidation(validationConfig); 
+
+export { openDeleteCardForm }

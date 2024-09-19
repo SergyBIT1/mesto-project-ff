@@ -1,5 +1,5 @@
 import { addLikeAndCount, deleteLike, eraseCardByApi } from "./api";
-// import { openPopup, closePopup } from "./modal";
+import { openDeleteCardForm } from "./index";
 
 const cardTemplate = document.querySelector('#card-template').content;
 
@@ -14,7 +14,7 @@ function createCard(dataset, userId, deleteCard, openCardImage, clickLike) {
   cardElement.querySelector('.card__image').alt = dataset.name;
   cardElement.querySelector('.card__title').textContent = dataset.name;
   cardDelete.addEventListener('click', () => {
-    deleteCard(cardElement, cardId)})
+    openDeleteCardForm(cardElement, cardId)})
   likeButton.addEventListener('click', (evt) => {
     clickLike(evt, cardId)})
   
@@ -45,11 +45,6 @@ function createCard(dataset, userId, deleteCard, openCardImage, clickLike) {
   return cardElement;
 };
 
-function deleteCard() {
-  const removeCardPopup = document.querySelector('.popup_type_remove-card');
-  removeCardPopup.querySelector('.popup__button');
-}
-
 function clickLike(evt, cardId) {
   const likeAction = evt.target.classList.contains('card__like-button_is-active') 
   const action = likeAction ? deleteLike(cardId) : addLikeAndCount(cardId);
@@ -61,6 +56,10 @@ function clickLike(evt, cardId) {
     .querySelector('.card__like-button-count').textContent = res.likes.length 
   }) 
   .catch(err => console.log(err));
+}
+
+function deleteCard(dataset) {
+  dataset.remove()
 }
 
 const handleDeleteCard = (dataset, cardElement) => {
