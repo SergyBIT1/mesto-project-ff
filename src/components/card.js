@@ -62,10 +62,10 @@ function deleteCard(dataset) {
   dataset.remove()
 }
 
-const handleDeleteCard = (dataset, cardElement) => {
-  deleteCard(dataset.owner._id).then(() => {
-    cardElement.remove();
-  })
-}
+// const handleDeleteCard = (dataset, cardElement) => {
+//   deleteCard(dataset.owner._id).then(() => {
+//     cardElement.remove();
+//   })
+// }
 
-export {createCard, deleteCard, clickLike, handleDeleteCard}
+export {createCard, deleteCard, clickLike}

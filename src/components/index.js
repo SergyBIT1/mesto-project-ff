@@ -158,9 +158,12 @@ changeBtnText(editProfileSaveBtn, true)
   })
 };
 
+formEditProfile.addEventListener('submit', editProfileHandler);
+
+
+
 function openDeleteCardForm(dataset, cardId) {
   const removeCardPopup = document.querySelector('.popup_type_remove-card'); 
-  openPopup(removeCardPopup); 
   const removeButton = removeCardPopup.querySelector('.popup__button'); 
    openPopup(removeCardPopup);
 
@@ -168,6 +171,7 @@ function openDeleteCardForm(dataset, cardId) {
     eraseCardByApi(cardId)
 
     .then(() => {
+      evt.target.reset()
        closePopup(removeCardPopup)      
     })
  .catch((err) => {
@@ -175,6 +179,8 @@ function openDeleteCardForm(dataset, cardId) {
     })
   }
 }
+
+
 
 enableValidation(validationConfig); 
 
