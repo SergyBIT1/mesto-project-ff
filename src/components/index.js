@@ -64,7 +64,13 @@ function getInitialData() {
 
       cardsData.forEach((dataset) => {
         placesList.append(
-          createCard(dataset, userId, deleteCard, openCardImage, clickLike)
+          createCard(
+            dataset,
+            userId,
+            openConfirmationForm,
+            openCardImage,
+            clickLike
+          )
         );
       });
     }
@@ -140,7 +146,7 @@ function createNewCard(evt) {
       const newPopupCard = createCard(
         dataset,
         userId,
-        deleteCard,
+        openConfirmationForm,
         openCardImage,
         clickLike
       );
@@ -181,6 +187,21 @@ function editProfileHandler(evt) {
 
 formEditProfile.addEventListener("submit", editProfileHandler);
 
-enableValidation(validationConfig);
+const removeCardPopup = document.querySelector(".popup_type_remove-card");
+const removeButton = removeCardPopup.querySelector(".popup__button");
 
-export { openPopup, closePopup };
+function openConfirmationForm(dataset, cardId) {
+  openPopup(removeCardPopup);
+  removeButton.onclick = () => {
+    eraseCardByApi(cardId)
+      .then(() => {
+        deleteCard(dataset);
+        closePopup(removeCardPopup);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+}
+
+enableValidation(validationConfig);

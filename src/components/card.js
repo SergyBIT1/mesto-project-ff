@@ -1,9 +1,14 @@
 import { addLikeAndCount, deleteLike, eraseCardByApi } from "./api";
-import { openPopup, closePopup } from "./index";
 
 const cardTemplate = document.querySelector("#card-template").content;
 
-function createCard(dataset, userId, deleteCard, openCardImage, clickLike) {
+function createCard(
+  dataset,
+  userId,
+  openConfirmationForm,
+  openCardImage,
+  clickLike
+) {
   const cardId = dataset._id;
 
   const cardElement = cardTemplate.querySelector(".card").cloneNode(true);
@@ -13,7 +18,7 @@ function createCard(dataset, userId, deleteCard, openCardImage, clickLike) {
   cardElement.querySelector(".card__image").alt = dataset.name;
   cardElement.querySelector(".card__title").textContent = dataset.name;
   cardDelete.addEventListener("click", () => {
-    deleteCard(cardElement, cardId);
+    openConfirmationForm(cardElement, cardId);
   });
 
   likeButton.addEventListener("click", (evt) => {
@@ -45,7 +50,7 @@ function createCard(dataset, userId, deleteCard, openCardImage, clickLike) {
     cardDelete.remove();
   } else {
     cardDelete.addEventListener("click", () => {
-      deleteCard(cardElement, cardId);
+      openConfirmationForm(cardElement, cardId);
     });
   }
 
@@ -67,22 +72,8 @@ function clickLike(evt, cardId, likeCardPlace) {
     .catch((err) => console.log(err));
 }
 
-const removeCardPopup = document.querySelector(".popup_type_remove-card");
-const removeButton = removeCardPopup.querySelector(".popup__button");
-
-function deleteCard(dataset, cardId) {
-  openPopup(removeCardPopup);
-
-  removeButton.onclick = () => {
-    eraseCardByApi(cardId)
-      .then(() => {
-        dataset.remove();
-        closePopup(removeCardPopup);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
+function deleteCard(dataset) {
+  dataset.remove();
 }
 
 export { createCard, deleteCard, clickLike };
